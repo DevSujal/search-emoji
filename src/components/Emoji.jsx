@@ -28,7 +28,7 @@ function Emoji({ category }) {
     const {top} = e.target.getBoundingClientRect()
     const scrollY = window.scrollY
     target.style.top = `${scrollY + top - 40}px`
-   }
+   } // it is the code for hovering effect on perticular emojis
   const notHover = (e) => {
     const target = e.target.parentElement.firstElementChild
     target.classList.add("hidden")
