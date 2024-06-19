@@ -47,7 +47,7 @@ function Emoji({ category }) {
             className=" max-w-40 shadow-md flex flex-col justify-center rounded bg-gray-600 p-3 hover:cursor-pointer"
           >
             <h2 className="absolute  text-gray-200 font-semibold hidden z-10">{emoji.name}</h2>
-            <h2 className="text-5xl hover:cursor-pointer sm:text-8xl" onMouseOver = {hover} onMouseLeave={notHover}>
+            <h2 className="text-7xl hover:cursor-pointer sm:text-8xl" onMouseOver = {hover} onMouseLeave={notHover}>
               {String.fromCodePoint(
                 parseInt(emoji.emoji.replace(/^&#(\d+);$/g, "$1"))
               )}
@@ -55,7 +55,6 @@ function Emoji({ category }) {
           </div>
         ))}
       </div>
-      // <div></div>
     );
   }
 }
