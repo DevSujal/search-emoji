@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import emoji from "../Api/emoji";
 import { addAllCategoryEmoji } from "../store/emojiSlice";
@@ -17,13 +17,25 @@ function Emoji({ category }) {
           emojis.push({ emoji: data[i].htmlCode[0], name: data[i].name });
         }
         dispatch(addAllCategoryEmoji({ emojis, category }));
-        setLoader(false);
-      });
-  }, [category]);
+      }).finally(() => setLoader(false))
+  }, [emojis]);
   const dispatch = useDispatch();
+
+
+  const hover = (e) => {
+    const target = e.target.parentElement.firstElementChild
+    target.classList.remove("hidden")
+    const {top} = e.target.getBoundingClientRect()
+    const scrollY = window.scrollY
+    target.style.top = `${scrollY + top - 40}px`
+   }
+  const notHover = (e) => {
+    const target = e.target.parentElement.firstElementChild
+    target.classList.add("hidden")
+   }
   
   if (loader) {
-    return <div className="m-auto text-4xl text-red">Loading...</div>;
+    return <div className="absolute transform left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"><h1 className=" text-5xl text-white text-bold">Loading...</h1></div>;
   } else {
     return (
       <div className="flex flex-wrap w-11/12 m-auto justify-around gap-7 my-7">
@@ -32,10 +44,10 @@ function Emoji({ category }) {
         )).map((emoji) => (
           <div
             key={emoji.id}
-            className=" shadow-md flex flex-col justify-center rounded bg-gray-600 p-3 hover:cursor-pointer"
+            className=" max-w-40 shadow-md flex flex-col justify-center rounded bg-gray-600 p-3 hover:cursor-pointer"
           >
-            
-            <h2 className=" text-8xl">
+            <h2 className="absolute  text-gray-200 font-semibold hidden z-10">{emoji.name}</h2>
+            <h2 className="text-5xl hover:cursor-pointer sm:text-8xl" onMouseOver = {hover} onMouseLeave={notHover}>
               {String.fromCodePoint(
                 parseInt(emoji.emoji.replace(/^&#(\d+);$/g, "$1"))
               )}
