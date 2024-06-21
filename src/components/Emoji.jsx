@@ -40,11 +40,11 @@ function Emoji({ category }) {
     return (
       <div className="flex flex-wrap w-11/12 m-auto justify-around gap-7 my-7">
         {emojis.filter((emoji) => (
-            emoji.name.toLowerCase().includes(search.toLowerCase())
+            emoji.name.toLowerCase().includes(search.toLowerCase()) && emoji.name !== "white smiling face ≊ smiling face"
         )).map((emoji) => (
           <div
             key={emoji.id}
-            className=" max-w-40 shadow-md flex flex-col justify-center rounded bg-gray-600 p-3 hover:cursor-pointer"
+            className=" max-w-40 shadow-md flex flex-col justify-center bg-gray-950 rounded-xl items-center  p-3 pb-5 hover:cursor-pointer"
           >
             <h2 className="absolute  text-gray-200 font-semibold hidden z-10">{emoji.name}</h2>
             <h2 className="text-7xl hover:cursor-pointer sm:text-8xl" onMouseOver = {hover} onMouseLeave={notHover}>
