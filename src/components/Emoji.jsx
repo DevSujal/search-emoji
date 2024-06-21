@@ -48,7 +48,7 @@ function Emoji({ category }) {
             (emoji) =>
               emoji.name.toLowerCase().includes(search.toLowerCase()) &&
               emoji.name !== "white smiling face ≊ smiling face" &&
-              emoji.name !== "white froning face ≊ frowning face" &&
+              emoji.name !== "white frowning face ≊ frowning face" &&
               emoji.name !== "skull and crossbones" &&
               emoji.name !==
                 "heavy heart exclamation mark ornament ≊ heavy heart exclamation" &&
